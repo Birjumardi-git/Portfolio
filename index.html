@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birju Mardi | Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #eef2f7;
+            --surface: rgba(255, 255, 255, 0.8);
+            --surface-strong: #ffffff;
+            --ink: #18212f;
+            --muted: #5f6c80;
+            --line: rgba(24, 33, 47, 0.12);
+            --brand: #1d4ed8;
+            --brand-dark: #1e3a8a;
+            --accent: #0f766e;
+            --shadow: 0 20px 60px rgba(31, 41, 55, 0.12);
+            --radius-lg: 28px;
+            --radius-md: 18px;
+            --radius-sm: 12px;
+            --container: 1160px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Manrope", sans-serif;
+            color: var(--ink);
+            background:
+                radial-gradient(circle at top left, rgba(29, 78, 216, 0.12), transparent 28%),
+                radial-gradient(circle at 85% 15%, rgba(15, 118, 110, 0.1), transparent 24%),
+                linear-gradient(180deg, #f8fbff 0%, var(--bg) 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        .container {
+            width: min(var(--container), calc(100% - 2rem));
+            margin: 0 auto;
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(18px);
+            background: rgba(44, 56, 74, 0.9);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+        }
+
+        .nav {
+            min-height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+        }
+
+        .brand {
+            font-weight: 900;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            color: #f8fbff;
+        }
+
+        .nav-toggle {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 46px;
+            height: 46px;
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.06);
+            color: #f8fbff;
+            cursor: pointer;
+        }
+
+        .nav-toggle svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            color: rgba(248, 251, 255, 0.84);
+            font-size: 0.95rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            display: inline-flex;
+            padding: 0.55rem 0.85rem;
+            border-radius: 999px;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus-visible {
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.14);
+        }
+
+        .hero {
+            padding: 5.5rem 0 4rem;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.9fr;
+            gap: 2rem;
+            align-items: stretch;
+        }
+
+        .hero-copy,
+        .hero-panel,
+        .section-card,
+        .project-card,
+        .contact-card {
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(16px);
+        }
+
+        .hero-copy {
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.55rem;
+            padding: 0.45rem 0.8rem;
+            border-radius: 999px;
+            background: rgba(29, 78, 216, 0.1);
+            color: var(--brand-dark);
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.4rem;
+        }
+
+        .hero h1,
+        .section-heading h2 {
+            font-family: "Fraunces", serif;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4.2vw, 3.5rem);
+            max-width: 17ch;
+            margin-bottom: 1rem;
+            line-height: 1.15;
+        }
+
+        .hero p {
+            max-width: 60ch;
+            font-size: 1.08rem;
+            color: var(--muted);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .button,
+        .button-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 52px;
+            padding: 0.95rem 1.4rem;
+            border-radius: 999px;
+            font-weight: 700;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+        }
+
+        .button {
+            background: var(--brand);
+            color: #ffffff;
+            box-shadow: 0 14px 30px rgba(29, 78, 216, 0.22);
+        }
+
+        .button:hover,
+        .button:focus-visible,
+        .button-secondary:hover,
+        .button-secondary:focus-visible {
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.5);
+            color: var(--ink);
+        }
+
+        .hero-meta {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+            margin-top: 2.2rem;
+        }
+
+        .hero-meta div {
+            padding-top: 1rem;
+            border-top: 1px solid var(--line);
+        }
+
+        .hero-meta strong {
+            display: block;
+            font-size: 1.15rem;
+            color: var(--brand-dark);
+        }
+
+        .hero-meta span {
+            font-size: 0.92rem;
+            color: var(--muted);
+        }
+
+        .hero-panel {
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 1.6rem;
+        }
+
+        .portrait {
+            min-height: 300px;
+            border-radius: 22px;
+            background:
+                linear-gradient(160deg, rgba(29, 78, 216, 0.18), rgba(15, 118, 110, 0.14)),
+                linear-gradient(135deg, #dbeafe 0%, #e6f7f4 100%);
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portrait::before {
+            content: "BM";
+            position: absolute;
+            right: 1rem;
+            bottom: -1rem;
+            font-size: 7rem;
+            font-weight: 800;
+            line-height: 1;
+            color: rgba(19, 78, 74, 0.08);
+        }
+
+        .portrait-card {
+            width: 100%;
+            height: 100%;
+            min-height: 270px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.95);
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .portrait-card strong {
+            display: block;
+            font-size: 1.8rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .portrait-card span {
+            color: var(--muted);
+        }
+
+        .availability {
+            display: grid;
+            gap: 0.8rem;
+        }
+
+        .availability-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .availability-row:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        main section {
+            padding: 1.5rem 0 4rem;
+        }
+
+        .section-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3.3rem);
+        }
+
+        .section-heading p {
+            max-width: 48ch;
+            color: var(--muted);
+        }
+
+        .about-grid,
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 1.5rem;
+        }
+
+        .section-card,
+        .contact-card {
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+        }
+
+        .lead {
+            font-size: 1.1rem;
+            color: var(--ink);
+            margin-bottom: 1rem;
+        }
+
+        .muted {
+            color: var(--muted);
+        }
+
+        .bullet-list {
+            list-style: none;
+            display: grid;
+            gap: 0.9rem;
+            margin-top: 1.5rem;
+        }
+
+        .bullet-list li {
+            padding-left: 1rem;
+            position: relative;
+            color: var(--muted);
+        }
+
+        .bullet-list li::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--accent);
+            position: absolute;
+            left: 0;
+            top: 0.62rem;
+        }
+
+        .skill-grid,
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card,
+        .project-card {
+            border-radius: var(--radius-md);
+            padding: 1.7rem;
+        }
+
+        .project-grid {
+            grid-template-columns: minmax(0, 920px);
+            justify-content: center;
+        }
+
+        .project-card.featured-project {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(320px, 420px);
+            gap: 1.75rem;
+            align-items: center;
+        }
+
+        .skill-rating {
+            display: inline-flex;
+            margin-top: 1rem;
+            font-size: 1rem;
+            letter-spacing: 0.12em;
+            color: var(--accent);
+            font-weight: 800;
+        }
+
+        .skill-card h3,
+        .project-card h3,
+        .contact-card h3 {
+            margin-bottom: 0.7rem;
+            font-size: 1.15rem;
+        }
+
+        .skill-card p,
+        .project-card p,
+        .contact-card p {
+            color: var(--muted);
+        }
+
+        .skill-tag,
+        .project-tags span {
+            display: inline-flex;
+            margin-top: 1rem;
+            margin-right: 0.45rem;
+            padding: 0.35rem 0.7rem;
+            border-radius: 999px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            background: rgba(29, 78, 216, 0.1);
+            color: var(--brand-dark);
+        }
+
+        .project-top {
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .project-shot {
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #edf4ff 100%);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+        }
+
+        .project-shot-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+            object-position: top center;
+            display: block;
+        }
+
+        .project-index {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            font-size: 0.85rem;
+        }
+
+        .project-link {
+            margin-top: 1.25rem;
+            display: inline-flex;
+            color: var(--brand-dark);
+            font-weight: 700;
+        }
+
+        .project-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .project-result {
+            margin-top: 1rem;
+            padding: 0.85rem 1rem;
+            border-radius: 14px;
+            background: rgba(15, 118, 110, 0.08);
+            color: #115e59;
+            font-size: 0.94rem;
+        }
+
+        .project-result strong {
+            color: var(--brand-dark);
+        }
+
+        .project-card.featured-project .project-top {
+            margin-bottom: 0.7rem;
+        }
+
+        .project-card.featured-project .project-index {
+            margin-bottom: 0.3rem;
+            display: inline-flex;
+        }
+
+        .project-card.featured-project h3 {
+            font-size: 1.45rem;
+            margin-bottom: 0;
+        }
+
+        .project-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .timeline {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .timeline-item {
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: 0;
+        }
+
+        .timeline-item strong {
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contact-list li {
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contact-list li:last-child {
+            border-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .contact-list strong {
+            display: block;
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-note {
+            margin-top: 1.4rem;
+            padding: 1rem 1.1rem;
+            border-radius: var(--radius-sm);
+            background: rgba(15, 118, 110, 0.12);
+            color: #115e59;
+            font-size: 0.95rem;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 1.2rem;
+        }
+
+        .why-card {
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            background: var(--surface);
+            border: 1px solid rgba(255, 255, 255, 0.7);
+            box-shadow: var(--shadow);
+        }
+
+        .why-card strong {
+            display: block;
+            margin-bottom: 0.55rem;
+            color: var(--brand-dark);
+        }
+
+        .footer {
+            padding: 0 0 2.5rem;
+        }
+
+        .footer-card {
+            border-top: 1px solid var(--line);
+            padding-top: 1.4rem;
+            display: flex;
+            justify-content: space-between;
+            gap: 1rem;
+            color: var(--muted);
+            font-size: 0.95rem;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 980px) {
+            .hero {
+                padding: 4rem 0 3rem;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .contact-grid,
+            .skill-grid,
+            .project-grid,
+            .why-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-copy,
+            .hero-panel,
+            .section-card,
+            .contact-card,
+            .skill-card,
+            .project-card {
+                padding: 1.5rem;
+            }
+
+            .project-card.featured-project {
+                grid-template-columns: 1fr;
+            }
+
+            .project-shot {
+                order: -1;
+            }
+
+            .hero-meta {
+                grid-template-columns: 1fr;
+            }
+
+            .section-heading {
+                align-items: start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                width: min(var(--container), calc(100% - 1.2rem));
+            }
+
+            .nav {
+                min-height: auto;
+                padding: 0.8rem 0;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                align-items: center;
+            }
+
+            .nav-toggle {
+                display: inline-flex;
+            }
+
+            .nav-links {
+                display: none;
+                grid-column: 1 / -1;
+                width: 100%;
+                margin-top: 0.8rem;
+                padding: 0.6rem;
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 20px;
+                background: rgba(49, 61, 81, 0.98);
+                box-shadow: 0 18px 40px rgba(15, 23, 42, 0.2);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.35rem;
+            }
+
+            .nav-links.is-open {
+                display: flex;
+            }
+
+            .nav-links a {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .hero {
+                padding: 2rem 0 2.25rem;
+            }
+
+            .footer-card {
+                flex-direction: column;
+            }
+
+            .hero-copy,
+            .hero-panel {
+                border-radius: 22px;
+            }
+
+            .hero h1 {
+                font-size: clamp(1.85rem, 7vw, 2.45rem);
+                max-width: 18ch;
+            }
+
+            .hero p,
+            .lead,
+            .section-heading p {
+                font-size: 1rem;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .button,
+            .button-secondary {
+                width: 100%;
+            }
+
+            .project-actions {
+                flex-direction: column;
+            }
+
+            .portrait {
+                min-height: 240px;
+                padding: 1rem;
+            }
+
+            .portrait-card {
+                min-height: 210px;
+                padding: 1.5rem;
+            }
+
+            .availability-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.25rem;
+            }
+
+            main section {
+                padding: 1rem 0 2.8rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .brand {
+                font-size: 0.84rem;
+                letter-spacing: 0.06em;
+            }
+
+            .eyebrow {
+                font-size: 0.78rem;
+            }
+
+            .hero-copy,
+            .hero-panel,
+            .section-card,
+            .contact-card,
+            .skill-card,
+            .project-card {
+                padding: 1.15rem;
+            }
+
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+
+            .section-heading h2 {
+                font-size: 1.95rem;
+            }
+
+            .footer-card {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container nav">
+            <a class="brand" href="#top">Birju Mardi</a>
+            <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Open navigation">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+                    <path d="M4 7h16"></path>
+                    <path d="M4 12h16"></path>
+                    <path d="M4 17h16"></path>
+                </svg>
+            </button>
+            <ul class="nav-links" id="site-nav">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <main id="top">
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-copy reveal">
+                    <h1>I build real, working websites using AI + coding that are clean, fast, and practical.</h1>
+                    <p>
+                        I am Birju Mardi, a creator focused on clean websites, digital content, and AI-assisted workflows.
+                        I enjoy turning ideas into polished, useful experiences that are simple, modern, and easy to use.
+                    </p>
+                    <div class="hero-actions">
+                        <a class="button" href="#projects">View Projects</a>
+                        <a class="button-secondary" href="#contact">Contact Me</a>
+                    </div>
+                    <div class="hero-meta">
+                        <div>
+                            <strong>Web Creation</strong>
+                            <span>Responsive pages with clean structure and presentation</span>
+                        </div>
+                        <div>
+                            <strong>Digital Content</strong>
+                            <span>Visual assets, social posts, and communication-focused design</span>
+                        </div>
+                        <div>
+                            <strong>AI Workflow</strong>
+                            <span>Using modern tools to speed up research, drafting, and production</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-panel reveal">
+                    <div class="portrait">
+                        <div class="portrait-card">
+                            <div>
+                                <strong>Birju Mardi</strong>
+                                <span>Web Creator | Digital Marketing | AI Tools User</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="availability">
+                        <div class="availability-row">
+                            <span class="muted">Location</span>
+                            <strong>Parsudih, Jamshedpur, India</strong>
+                        </div>
+                        <div class="availability-row">
+                            <span class="muted">Focus</span>
+                            <strong>I build real-world websites using AI tools combined with practical coding knowledge.</strong>
+                        </div>
+                        <div class="availability-row">
+                            <span class="muted">Availability</span>
+                            <strong>Open to freelance and learning opportunities</strong>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <h2>About</h2>
+                </div>
+                <div class="about-grid">
+                    <article class="section-card reveal">
+                        <p class="lead">
+                            I am a student and emerging digital creator with a growing interest in web development, AI tools, and online communication.
+                        </p>
+                        <p class="muted">
+                            My approach is simple: learn fast, build consistently, and present work professionally. I like projects that solve real problems,
+                            improve how information is presented, or help a brand look more trustworthy online.
+                        </p>
+                        <p class="muted">
+                            I focus on building real, usable projects rather than just learning theory.
+                        </p>
+                        <ul class="bullet-list">
+                            <li>Building Modern websites using AI with basic coding support.</li>
+                           <li>Combining design, AI tools, and marketing for practical solutions.</li>
+                            <li>Focused on clean work, real results, and continuous improvement.</li>
+                        </ul>
+                    </article>
+                    <aside class="section-card reveal">
+                        <div class="timeline">
+                          <div class="timeline-item">
+                    <strong>Current Direction</strong>
+                    <span class="muted">Building real-world projects and a strong professional presence.</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>What I Value</strong>
+                    <span class="muted">Clarity, consistency, and delivering complete work.</span>
+                </div>
+                <div class="timeline-item">
+                    <strong>Next Step</strong>
+                    <span class="muted">Working on more practical projects to grow skills and confidence.</span>
+                </div>
+                                        </div>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <h2>Core Skills</h2>
+                </div>
+                <div class="skill-grid">
+                    <article class="skill-card reveal">
+                        <h3>Website Creation</h3>
+                        <p>Building functional and responsive websites using AI tools with a strong focus on clean layout and usability.</p>
+                        <div class="skill-rating" aria-label="Website Creation rating 4 out of 5">4/5</div>
+                        <span class="skill-tag">HTML / CSS</span>
+                        <span class="skill-tag">Responsive Layout</span>
+                    </article>
+                    <article class="skill-card reveal">
+                        <h3>Canva & Visual Design</h3>
+                        <p>Creating clean and engaging social media visuals, thumbnails, and simple design assets for digital content.</p>
+                        <div class="skill-rating" aria-label="Canva and design assets rating 4 out of 5">4/5</div>
+                        <span class="skill-tag">Canva Design</span>
+                        <span class="skill-tag">Visual Design</span>
+                    </article>
+                    <article class="skill-card reveal">
+                        <h3>Social Media & Content</h3>
+                        <p>Managing content (YouTube), understanding basic SEO, and creating posts that improve visibility and engagement.</p>
+                        <div class="skill-rating" aria-label="Digital marketing support rating 4 out of 5">4/5</div>
+                        <span class="skill-tag">SEO Basics</span>
+                        <span class="skill-tag">YouTube Handling</span>
+                    </article>
+                    <article class="skill-card reveal">
+                        <h3>AI Tool Usage</h3>
+                        <p>Using AI tools like ChatGPT to speed up website building, content creation, and data research workflows.</p>
+                        <div class="skill-rating" aria-label="AI tool usage rating 5 out of 5">5/5</div>
+                        <span class="skill-tag">Prompting</span>
+                        <span class="skill-tag">Productivity</span>
+                    </article>
+                    <article class="skill-card reveal">
+                        <h3>AI-Based Data Collection</h3>
+                        <p>Collecting and organizing web data efficiently using AI tools for research, content creation, and structured analysis.</p>
+                        <div class="skill-rating" aria-label="Data collection rating 4 out of 5">4/5</div>
+                        <span class="skill-tag">Data Research</span>
+                        <span class="skill-tag">AI Workflow</span>
+                    </article>
+                    <article class="skill-card reveal">
+                        <h3>Learning & Growth</h3>
+                        <p>Quickly adapting to new tools, learning by building real projects, and continuously improving output quality.</p>
+                        <div class="skill-rating" aria-label="Growth mindset rating 5 out of 5">5/5</div>
+                        <span class="skill-tag">Fast Learner</span>
+                        <span class="skill-tag">Practical Approach</span>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <h2>My Projects</h2>
+                </div>
+                <div class="project-grid">
+                    <article class="project-card featured-project reveal">
+                        <div class="project-copy">
+                            <div class="project-top">
+                                <div>
+                                    <div class="project-index">PROJECT 01</div>
+                                    <h3>IPL Prediction Website</h3>
+                                </div>
+                            </div>
+                            <p>A clean IPL prediction website that uses match data and trends to deliver quick and easy-to-understand predictions.</p>
+                            <div class="project-tags">
+                                <span>Data Analysis</span>
+                                <span>Prediction System</span>
+                            </div>
+                            <div class="project-result"><strong>Result:</strong> Provided quick and easy IPL match predictions using structured data.</div>
+                            <div class="project-actions">
+                                <a class="button-secondary" href="https://mydigitalform.com" target="_blank">Live Demo</a>
+                            </div>
+                        </div>
+                        <figure class="project-shot">
+                            <img class="project-shot-image" src="https://image.thum.io/get/width/1200/crop/800/noanimate/https://mydigitalform.com" alt="Screenshot preview of the IPL Prediction Website">
+                        </figure>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="why-work-with-me">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <h2>Why Work With Me</h2>
+                </div>
+                <div class="why-grid">
+                    <article class="why-card reveal">
+                        <strong>Clean and Usable Work</strong>
+                        <p class="muted">I focus on clear design, functional layouts, and work that feels complete.</p>
+                    </article>
+                    <article class="why-card reveal">
+                        <strong>Quick Learner</strong>
+                        <p class="muted">I adapt fast, improve through real tasks, and stay open to feedback.</p>
+                    </article>
+                    <article class="why-card reveal">
+                        <strong>AI-Powered Workflow</strong>
+                        <p class="muted">I use AI tools to save time, improve output, and move from idea to execution faster.</p>
+                    </article>
+                    <article class="why-card reveal">
+                        <strong>Practical Results</strong>
+                        <p class="muted">I care about building useful work, not just studying theory.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <h2>Contact</h2>
+                </div>
+                <div class="contact-grid">
+                    <article class="contact-card reveal">
+                        <h3>Let's Work Together</h3>
+                        <p>I'm interested in opportunities where I can keep building useful digital work and improve through real projects.</p>
+                        <p class="muted">Available for part-time roles, internships, and freelance work.</p>
+                        <ul class="contact-list">
+                            <li>
+                                <strong>Email</strong>
+                                <span class="muted">birjumardi2710@gmail.com</span>
+                            </li>
+                            <li>
+                                <strong>Phone</strong>
+                                <span class="muted">+91 9123209778</span>
+                            </li>
+                            <li>
+                                <strong>Location</strong>
+                                <span class="muted">Parsudih, Jamshedpur, India</span>
+                            </li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-card">
+            <p>&copy; 2026 Birju Mardi. All rights reserved.</p>
+            <p>"I don't just learn - I build and deliver."</p>
+        </div>
+    </footer>
+
+    <script>
+        const navToggle = document.querySelector(".nav-toggle");
+        const navLinks = document.querySelector(".nav-links");
+
+        if (navToggle && navLinks) {
+            navToggle.addEventListener("click", () => {
+                const isOpen = navLinks.classList.toggle("is-open");
+                navToggle.setAttribute("aria-expanded", String(isOpen));
+                navToggle.setAttribute("aria-label", isOpen ? "Close navigation" : "Open navigation");
+            });
+
+            navLinks.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("is-open");
+                    navToggle.setAttribute("aria-expanded", "false");
+                    navToggle.setAttribute("aria-label", "Open navigation");
+                });
+            });
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("is-visible");
+                }
+            });
+        }, { threshold: 0.14 });
+
+        document.querySelectorAll(".reveal").forEach((element) => observer.observe(element));
+    </script>
+</body>
+</html>
